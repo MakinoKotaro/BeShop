@@ -2,28 +2,23 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// 敵のアニメーションを管理するスクリプト
+/// </summary>
 public class EnemyManager : MonoBehaviour
 {
     Animator animator;
-    // Start is called before the first frame update
-    void Start()
-    {
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 
     public void EnemyWalk()
     {
-
+         //何か追加するのかな？？
     }
 
     public void EnemyDead()
     {
         Debug.Log("しんだ！");
+        //何か追加するのかな？？
     }
+
+    //このスクリプトは使用していますか？？
 }

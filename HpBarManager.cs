@@ -2,16 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+
 /// <summary>
 /// HPの可視化スクリプト
 /// </summary>
 public class HpBarManager : MonoBehaviour
 {
-    [SerializeField] private Image hpImage;
+    [SerializeField] private Image hpImage; //HPを表示するためのImage
 
-    Color originalColor;
-    private GameObject player;
-    [SerializeField] private PlayerParameter playerParameter;
+    Color originalColor; //元の色を保存しておく変数
+    private GameObject player; //プレイヤーのオブジェクト
+    [SerializeField] private PlayerParameter playerParameter; //プレイヤーのパラメータを持っているスクリプト
 
     /// <summary>
     /// 現在のHPを表示

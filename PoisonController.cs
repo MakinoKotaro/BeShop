@@ -7,9 +7,12 @@ using UnityEngine;
 /// </summary>
 public class PoisonController : MonoBehaviour
 {
-    [SerializeField] private GameObject mushParent;
-    Mushroom mushroom;
-    private BoxCollider poisonCollider;private GameObject player;
+    [SerializeField] private GameObject mushParent; // 親オブジェクト
+    Mushroom mushroom; // Mushroomスクリプト
+
+    private BoxCollider poisonCollider; // 毒のコライダー
+    private GameObject player; // プレイヤー
+    
     void Start()
     {
         poisonCollider = GetComponent<BoxCollider>();
@@ -18,7 +21,6 @@ public class PoisonController : MonoBehaviour
         player = GameObject.FindWithTag("Player");
     }
 
-    // Update is called once per frame
     void Update()
     {
         if(mushroom.CanShotPoison == false)

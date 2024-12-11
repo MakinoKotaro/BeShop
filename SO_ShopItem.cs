@@ -70,22 +70,37 @@ public class SO_ShopItem : ScriptableObject
         return this.itemPrice;
     }
 
-    //アイテムの画像を取得する処理
+/// <summary>
+/// アイテムの画像を取得する処理
+/// </summary>
+/// <returns></returns>
     public Sprite GetItemSprite()
     {
             return this.itemSprite;
     }
 
+/// <summary>
+/// アイテムの効果値を取得する処理
+/// </summary>
+/// <returns></returns>
     public float GetEffectValue()
     {
         return this.itemEffectValue;
     }
 
+/// <summary>
+/// アイテムの計算タイプを取得する処理
+/// </summary>
+/// <returns></returns>
     public string GetCalcType()
     {
         return this.calcType;
     }
 
+/// <summary>
+/// アイテムの特殊効果を取得する処理
+/// </summary>
+/// <returns></returns>
     public bool IsSpecialMove()
     {
         return this.doSpecialMove;

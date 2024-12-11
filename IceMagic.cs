@@ -2,6 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
+
+/// <summary>
+/// 氷の魔法のスクリプト
+/// </summary>
 public class IceMagic : MagicBase
 {
     [SerializeField] private SO_Spell spell; //SO_Spellを取得
@@ -16,22 +20,28 @@ public class IceMagic : MagicBase
     [SerializeField] GameObject player; // Playerを取得
     private PlayerController playerController; // PlayerControllerを取得
 
-    GameObject castPoint;
+    GameObject castPoint; // 魔法を発射する場所
 
-    Vector3 screenCenter;
-    Vector3 bulletDirection;
+    Vector3 screenCenter; // 画面の中心
+    Vector3 bulletDirection; // 魔法の方向
 
-    [SerializeField] private GameObject particleManagerObj;
-    private GameObject sFXManagerObj;
+    [SerializeField] private GameObject particleManagerObj; // ParticleManagerのオブジェクト
+    private GameObject sFXManagerObj; // SFXManagerのオブジェクト
 
-    private float spellLength = 10.0f;
-    private float moveLength = 0.5f;
-    private float destroyDelay = 0.7f;
+    private float spellLength = 10.0f; // 魔法の射程
+    private float moveLength = 0.5f; // 魔法の移動距離
+    private float destroyDelay = 0.7f; // 魔法の消滅時間
+
+    private const int DefaultManaCost = 5;
+    private const int DefaultMagicDamage = 5;
+
+    //ファティンコメント、HealとIceで同じフィールドがあるので、親のMagic Baseに移動するのがいいかもしれません。
+    
     // IceMagicのコンストラクタ
     public IceMagic()
     {
-        ManaCost = 5;
-        MagicDamage = 5;
+        ManaCost = DefaultManaCost;   //マジックナンバーを定数にしておいたけど、いいのか？
+        MagicDamage = DefaultMagicDamage;
     }
 
     void Start()
@@ -39,15 +49,15 @@ public class IceMagic : MagicBase
         playerController = player.GetComponent<PlayerController>(); // player内のPlayerControllerを取得
 
         screenCenter = new Vector3(Screen.width / 2, Screen.height / 2, 0).normalized;
+        //マジックナンバー発見！コメントを残してください。
 
         sFXManagerObj = GameObject.FindWithTag("SFXManager");
     }
 
-    void Update()
-    {
-
-    }
-
+    /// <summary>
+    /// 魔法の挙動
+    /// </summary>
+    /// <param name="targetPoint"></param>
     public override void Behaviour(Vector3 targetPoint)
     {
 
@@ -63,6 +73,10 @@ public class IceMagic : MagicBase
         Invoke("DestroySpell", destroyDelay);
     }
 
+    /// <summary>
+    /// 魔法を発射する処理
+    /// </summary>
+    /// <param name="castPoint"></param>
     public override void Cast(Transform castPoint)
     {
         SpendMana("通常攻撃", ManaCost);
@@ -77,6 +91,9 @@ public class IceMagic : MagicBase
         sFXManager.SetShotSound();
     }
 
+    /// <summary>
+    /// 魔法を破壊する処理
+    /// </summary>
     void DestroySpell()
     {
         Destroy(currentSpell);

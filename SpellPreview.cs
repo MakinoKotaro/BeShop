@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+
 /// <summary>
 /// 魔法ショップのアイテムを表示するスクリプト
 /// </summary>

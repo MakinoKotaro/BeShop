@@ -19,16 +19,16 @@ public class PurchaseManager : MonoBehaviour
     private int itemCount = 0; //アイテムを購入する数
     public int ItemCount { get => itemCount; set => itemCount = value; } //アイテムを購入する数のゲッターセッター
 
-    PlayerParameter playerParameter;
+    PlayerParameter playerParameter; //プレイヤーのパラメータを持っているスクリプト
 
-    [SerializeField] private GameObject sFXManagerObj;
+    [SerializeField] private GameObject sFXManagerObj; //SFXManagerを入れるもの
 
     private void Start()
     {
         countText = countText.GetComponent<TextMeshProUGUI>(); //countTest内のTextMeshProコンポーネントを取得
         selectedItemImage = selectedItemImage.GetComponent<Image>(); //selectedItemImage内のImageコンポーネントを取得
 
-        playerParameter = GetComponent<PlayerParameter>();
+        playerParameter = GetComponent<PlayerParameter>(); //PlayerParameterを取得
     }
 
     /// <summary>
@@ -46,6 +46,10 @@ public class PurchaseManager : MonoBehaviour
         CountReset();
     }
 
+    /// <summary>
+    /// どの魔法を選択されたかを判定する処理
+    /// </summary>
+    /// <param name="spell"></param>
     public void SelectedSpell(SO_Spell spell)
     {
         selectedSpell = spell;
@@ -84,11 +88,12 @@ public class PurchaseManager : MonoBehaviour
             selectedItem = null;
         }
 
-        
-
         CountReset();
     }
 
+    /// <summary>
+    /// 魔法を購入する処理
+    /// </summary>
     public void BuySpells()
     {
         if (selectedSpell != null && itemCount != 0)

@@ -8,21 +8,21 @@ using UnityEngine.EventSystems;
 /// <summary>
 /// ショップ画面に表示されているアイテムにカーソルが乗ったときに表示する説明のUIを管理するスクリプト
 /// </summary>
-public class ShopUiManager : MonoBehaviour
+public class ShopUIManager : MonoBehaviour
 {
     [SerializeField] private Image panelImage; //アイテム説明のパネルを入れるもの
 
     [SerializeField] private TextMeshProUGUI itemNameText, itemDescText; //パネル内のアイテム名と説明をいれるもの
 
-    [SerializeField] private Button buyButton;
+    [SerializeField] private Button buyButton; //購入ボタンを入れるもの
 
-    private PurchaseManager purchaseManager;
+    private PurchaseManager purchaseManager; //PurchaseManagerを入れるもの
 
-    [SerializeField] private TextMeshProUGUI playerInfoText_attackPower;
-    [SerializeField] private TextMeshProUGUI playerInfoText_hitPoint;
-    [SerializeField] private TextMeshProUGUI playerInfoText_speed;
-    [SerializeField] private GameObject playerParameterObj;
-    PlayerParameter playerParameter;
+    [SerializeField] private TextMeshProUGUI playerInfoText_attackPower; //プレイヤーの攻撃力を表示するテキスト
+    [SerializeField] private TextMeshProUGUI playerInfoText_hitPoint; //プレイヤーのHPを表示するテキスト
+    [SerializeField] private TextMeshProUGUI playerInfoText_speed; //プレイヤーのスピードを表示するテキスト
+    [SerializeField] private GameObject playerParameterObj; //プレイヤーのパラメータを持っているオブジェクト
+    PlayerParameter playerParameter; //プレイヤーのパラメータを持っているスクリプト
 
     private void Start()
     {
@@ -32,6 +32,7 @@ public class ShopUiManager : MonoBehaviour
         itemNameText = itemNameText.GetComponent<TextMeshProUGUI>(); // itemNameText内のTextMeshProコンポーネントを取得
         
         itemDescText = itemDescText.GetComponent<TextMeshProUGUI>(); // itemDescText内のTextMeshProコンポーネントを取得
+        
         if (playerInfoText_attackPower != null)
         {
             playerInfoText_attackPower = playerInfoText_attackPower.GetComponent<TextMeshProUGUI>();
@@ -40,14 +41,14 @@ public class ShopUiManager : MonoBehaviour
 
         playerParameter = playerParameterObj.GetComponent<PlayerParameter>();
 
-        HideDescUi(); //最初は、説明UIを隠す
+        HideDescUI(); //最初は、説明UIを隠す
     }
 
     /// <summary>
     /// 説明UIを表示する処理
     /// </summary>
     /// <param name="shopItem"></param>
-    public void ShowDescUi(SO_ShopItem shopItem)
+    public void ShowDescUI(SO_ShopItem shopItem)
     {
 
         itemNameText.text = shopItem.ItemName;
@@ -70,7 +71,7 @@ public class ShopUiManager : MonoBehaviour
     /// 魔法の説明UIを表示する処理
     /// </summary>
     /// <param name="shopSpell"></param>
-    public void ShowSpellDescUi(SO_Spell shopSpell)
+    public void ShowSpellDescUI(SO_Spell shopSpell)
     {
         itemNameText.text = shopSpell.SpellName;
         itemDescText.text = shopSpell.SpellDesc;
@@ -91,7 +92,7 @@ public class ShopUiManager : MonoBehaviour
     /// <summary>
     /// 説明UIを非表示にする処理
     /// </summary>
-    public void HideDescUi()
+    public void HideDescUI()
     {
         Color panelColor = panelImage.color;
         panelColor.a = 0;

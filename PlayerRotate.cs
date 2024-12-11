@@ -3,6 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// プレイヤーの向きをカメラの正面方向に合わせるスクリプト
+/// </summary>
 public class PlayerRotate : MonoBehaviour
 {
     [SerializeField] private Transform player; // PlayerのTransformをInspectorで設定
@@ -21,7 +24,8 @@ public class PlayerRotate : MonoBehaviour
             if (cameraForward != Vector3.zero) // ゼロベクトルを避ける
             {
                 Quaternion targetRotation = Quaternion.LookRotation(cameraForward);
-                player.rotation = Quaternion.Slerp(player.rotation, targetRotation, Time.deltaTime * 5f);
+                player.rotation = Quaternion.Slerp(player.rotation, targetRotation, Time.deltaTime * 5f); 
+                //マジックナンバーを避けるために5fを変数にしておく
             }
         }
     }

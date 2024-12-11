@@ -10,24 +10,24 @@ public class PlayerAnimationScript : MonoBehaviour
     //アニメーターを取得
     Animator animator;
 
-    [SerializeField] private GameObject sFXManageObj;
+    [SerializeField] private GameObject sFXManageObj; //SFXManagerのオブジェクト
 
     //=============各アニメーション=============
-    [SerializeField] string idle_animation;
-    [SerializeField] string normal_attack_animation;
-    [SerializeField] string area_masic_animation;
-    [SerializeField] string walk_animation;
-    [SerializeField] string dodge_animation;
-    [SerializeField] string fall_animation;
-    [SerializeField] string dead_animation;
+    [SerializeField] string idle_animation; //待機アニメーション
+    [SerializeField] string normal_attack_animation; //通常攻撃アニメーション
+    [SerializeField] string area_masic_animation; //範囲魔法アニメーション
+    [SerializeField] string walk_animation; //歩くアニメーション
+    [SerializeField] string dodge_animation; //避けるアニメーション
+    [SerializeField] string fall_animation; //落下アニメーション
+    [SerializeField] string dead_animation; //死亡アニメーション
     //==========================================
 
     string nowAnimation = "";　//現在のアニメーションを取得
     private bool is_playing_animation = false; //現在アニメーションを再生中かどうか
     private bool stopping = true; //プレイヤーが止まっているかどうか 
 
-    private float originalAnimationSpeed = 1f;
-    private float fastAnimationSpeed = 1.5f;
+    private float originalAnimationSpeed = 1f; //通常のアニメーションスピード
+    private float fastAnimationSpeed = 1.5f; //速いアニメーションスピード
     void Start()
     {
         animator = GetComponent<Animator>(); //アニメーターのコンポーネントを取得

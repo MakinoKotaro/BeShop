@@ -20,22 +20,23 @@ public class NormalAttack : MagicBase
     [SerializeField] GameObject player; // Playerを取得
     private PlayerController playerController; // PlayerControllerを取得
 
-    GameObject castPoint;
+    GameObject castPoint; // 魔法を発射する場所
     
-    Vector3 screenCenter;
-    Vector3 bulletDirection;
+    Vector3 screenCenter; // 画面の中心
+    Vector3 bulletDirection; // 魔法の方向
 
-    [SerializeField] private GameObject particleManagerObj;
-    private GameObject sFXManagerObj;
+    [SerializeField] private GameObject particleManagerObj; // ParticleManagerのオブジェクト
+    private GameObject sFXManagerObj; // SFXManagerのオブジェクト
 
-    private float spellLength = 10.0f;
-    private float moveLength = 0.5f;
-    private float destroyDelay = 0.7f;
+    private float spellLength = 10.0f; // 魔法の長さ
+    private float moveLength = 0.5f; // 魔法の移動距離
+    private float destroyDelay = 0.7f; // 魔法の消滅までの時間
+    
     // NormalAttackのコンストラクタ
     public NormalAttack()
     {
-        ManaCost = 5;
-        MagicDamage = 5;
+        ManaCost = 5;  //これ定数にするか変数にするかにしてください
+        MagicDamage = 5; //これ定数にするか変数にするかにしてください
     }
 
     void Start()
@@ -43,15 +44,15 @@ public class NormalAttack : MagicBase
         playerController = player.GetComponent<PlayerController>(); // player内のPlayerControllerを取得
 
         screenCenter = new Vector3(Screen.width / 2, Screen.height / 2, 0).normalized;
+        //マジックナンバー発見！コメント追加などしてください
 
         sFXManagerObj = GameObject.FindWithTag("SFXManager");
     }
 
-    void Update()
-    {
-
-    }
-
+/// <summary>
+/// 魔法の挙動
+/// </summary>
+/// <param name="targetPoint"></param>
     public override void Behaviour(Vector3 targetPoint)
     {
 
@@ -67,6 +68,10 @@ public class NormalAttack : MagicBase
         Invoke("DestroySpell", destroyDelay);
     }
 
+/// <summary>
+/// 魔法の発射
+/// </summary>
+/// <param name="castPoint"></param>
     public override void Cast(Transform castPoint)
     {
         SpendMana("通常攻撃", ManaCost);
@@ -81,10 +86,14 @@ public class NormalAttack : MagicBase
         sFXManager.SetShotSound();
     }
 
+/// <summary>
+/// 魔法を消す処理
+/// </summary>
     void DestroySpell()
     {
         Destroy(currentSpell);
     }
+
 
 
     private void OnCollisionEnter(Collision collision)

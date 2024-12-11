@@ -7,19 +7,19 @@ using UnityEngine;
 /// </summary>
 public class BGMManager : MonoBehaviour
 {
-    LoadScene loadScene;
+    LoadScene loadScene;　//シーン遷移を管理するスクリプト
 
-    AudioSource audioSource;
+    AudioSource audioSource; //オーディオソース
 
     //======BGMクリップたち======
-    [SerializeField] private AudioClip titleBgm;
-    [SerializeField] private AudioClip HomeBgm;
-    [SerializeField] private AudioClip ShopBgm;
-    [SerializeField] private AudioClip StageBgm;
-    [SerializeField] private AudioClip ClearBgm;
-    [SerializeField] private AudioClip StageSelectBgm;
+    [SerializeField] private AudioClip titleBgm; //タイトルBGM
+    [SerializeField] private AudioClip HomeBgm; //ホームBGM
+    [SerializeField] private AudioClip ShopBgm; //ショップBGM
+    [SerializeField] private AudioClip StageBgm; //ステージBGM
+    [SerializeField] private AudioClip ClearBgm; //クリアBGM
+    [SerializeField] private AudioClip StageSelectBgm; //ステージセレクトBGM
     //===========================
-    private bool playingBgm = false;
+    private bool playingBgm = false; //BGMが再生中かどうか
     void Start()
     {
         loadScene = GetComponent<LoadScene>();
@@ -65,7 +65,7 @@ public class BGMManager : MonoBehaviour
 
         if(playingBgm == false)
         {
-            
+            //何か追加するのかな？？
         }
     }
 

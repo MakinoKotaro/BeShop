@@ -8,7 +8,7 @@ using UnityEngine.EventSystems;
 /// </summary>
 public class SpellShopInteraction : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerDownHandler
 {
-    [SerializeField] private ShopUiManager shopUiManager; //ShopUiManager‚ğæ“¾
+    [SerializeField] private ShopUiManager shopUIManager; //ShopUiManager‚ğæ“¾
     [SerializeField] private PurchaseManager purchaseManager; //PurchaseManager‚ğæ“¾
     bool isShowing = false; //à–¾‚ÌUI‚ª•\¦’†‚©‚Ç‚¤‚©
     [SerializeField] SO_Spell shopSpell; //SO_ShopItem‚ğæ“¾
@@ -28,7 +28,7 @@ public class SpellShopInteraction : MonoBehaviour, IPointerEnterHandler, IPointe
     {
         if (isShowing == false)
         {
-            shopUiManager.ShowSpellDescUi(shopSpell);
+            shopUIManager.ShowSpellDescUi(shopSpell);
             isShowing = true;
         }
     }
@@ -39,7 +39,7 @@ public class SpellShopInteraction : MonoBehaviour, IPointerEnterHandler, IPointe
     /// <param name="eventData"></param>
     public void OnPointerExit(PointerEventData eventData)
     {
-        shopUiManager.HideDescUi();
+        shopUIManager.HideDescUi();
         isShowing = false;
     }
 
@@ -55,7 +55,7 @@ public class SpellShopInteraction : MonoBehaviour, IPointerEnterHandler, IPointe
     }
 
     /// <summary>
-    /// 
+    /// ‘I‘ğ’†‚Ì‰æ‘œ‚ğ”ñ•\¦‚É‚·‚é
     /// </summary>
     /// <param name="gameObject"></param>
     public void HideFrame(GameObject gameObject)

@@ -9,28 +9,28 @@ using UnityEngine.SceneManagement;
 /// </summary>
 public class SFXManager : MonoBehaviour
 {
-    AudioSource audioSource;
-    private string clipName;
-    private float sfxLength;
-    private bool isPlayingSFX = false;
+    AudioSource audioSource; //AudioSourceを入れるもの
+    private string clipName; //再生中の音の名前
+    private float sfxLength; //効果音の長さ
+    private bool isPlayingSFX = false; //効果音が再生中かどうか
     //======効果音たち===========================
-    [SerializeField] private AudioClip startGameSound;
-    [SerializeField] private AudioClip startStageSound;
-    [SerializeField] private AudioClip selectStageSound;
-    [SerializeField] private AudioClip backSound;
-    [SerializeField] private AudioClip shotSound;
-    [SerializeField] private AudioClip purchaseSound;
-    [SerializeField] private AudioClip selectBuyItemSound;
-    [SerializeField] private AudioClip changeItemAmountSound;
-    [SerializeField] private AudioClip dodgeSound;
-    [SerializeField] private AudioClip swingAttackSound;
-    [SerializeField] private AudioClip walkSound;
-    [SerializeField] private AudioClip healSound;
+    [SerializeField] private AudioClip startGameSound; //ゲーム開始の音
+    [SerializeField] private AudioClip startStageSound; //ステージ開始の音
+    [SerializeField] private AudioClip selectStageSound; //ステージ選択の音
+    [SerializeField] private AudioClip backSound; //戻るボタンの音
+    [SerializeField] private AudioClip shotSound; //攻撃発射の音
+    [SerializeField] private AudioClip purchaseSound; //購入の音
+    [SerializeField] private AudioClip selectBuyItemSound; //アイテム選択の音
+    [SerializeField] private AudioClip changeItemAmountSound; //アイテム購入数変更の音
+    [SerializeField] private AudioClip dodgeSound; //回避の音
+    [SerializeField] private AudioClip swingAttackSound; //敵の振り下ろす攻撃の音
+    [SerializeField] private AudioClip walkSound; //歩く音
+    [SerializeField] private AudioClip healSound; //回復の音
     //============================================
     public float SfxLength { get => sfxLength; set => sfxLength = value; }
     public bool IsPlayingSFX { get => isPlayingSFX; set => isPlayingSFX = value; }
 
-    private float stepInterval = 0.7f;
+    private float stepInterval = 0.7f; //足音の間隔
     void Start()
     {
         Debug.Log(SceneManager.GetActiveScene().name);

@@ -4,15 +4,18 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
+/// <summary>
+/// ドロップダウンのコントローラー
+/// </summary>
 public class DropdownController : MonoBehaviour
 {
-    [SerializeField] SO_ShopItem knife;
-    [SerializeField] TextMeshProUGUI itemName;
-    [SerializeField] TextMeshProUGUI itemDesc;
-    [SerializeField] Image itemImage;
-    TMP_Dropdown dropdown;
+    [SerializeField] SO_ShopItem knife; // ナイフのアイテム
+    [SerializeField] TextMeshProUGUI itemName; // アイテム名
+    [SerializeField] TextMeshProUGUI itemDesc; // アイテム説明
+    [SerializeField] Image itemImage; // アイテム画像
+    TMP_Dropdown dropdown; // ドロップダウン
 
-    private bool isBought = false;
+    private bool isBought = false; // 購入済みかどうか
 
     public bool IsBought { get => isBought; set => isBought = value; }
 
@@ -21,6 +24,9 @@ public class DropdownController : MonoBehaviour
         dropdown = GetComponent<TMP_Dropdown>();
     }
 
+    /// <summary>
+    /// ドロップダウンが選択されたときの処理
+    /// </summary>
     public void OnSelected()
     {
         switch(dropdown.value)
@@ -32,7 +38,7 @@ public class DropdownController : MonoBehaviour
                 
                 if(isBought == true)
                 {
-                    
+                    //何か追加するのかな？？
                 }
                 break;
             default:
@@ -43,14 +49,14 @@ public class DropdownController : MonoBehaviour
         }
     }
 
-
+    /// <summary>
+    /// アイテムを購入する
+    /// </summary>
     public void BuyItem()
     {
         isBought = true;
     }
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+
+    //これって、、、使っているスクリプトなのかな？？
+
 }

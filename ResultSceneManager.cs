@@ -4,15 +4,19 @@ using UnityEngine;
 using DG.Tweening;
 using UnityEngine.UI;
 using TMPro;
+
+/// <summary>
+/// リザルト画面のUIを管理するスクリプト
+/// </summary>
 public class ResultSceneManager : MonoBehaviour
 {
-    [SerializeField] private Image resultPanelImage;
-    [SerializeField] private TextMeshProUGUI resultText;
+    [SerializeField] private Image resultPanelImage; //リザルト画面のパネルを入れるもの
+    [SerializeField] private TextMeshProUGUI resultText; //リザルト画面のテキストを入れるもの
 
-    private float delayTime = 4f;
-    [SerializeField] private float fadeDuration = 3f;
-    //2秒待って
-    // Start is called before the first frame update
+    private float delayTime = 4f; //フェードインまでの待ち時間
+    [SerializeField] private float fadeDuration = 3f; //フェードインの時間
+
+ 
     void Start()
     {
         Invisible(transform);
@@ -23,6 +27,10 @@ public class ResultSceneManager : MonoBehaviour
         });
     }
 
+    /// <summary>
+    /// パネルとテキストを非表示にする
+    /// </summary>
+    /// <param name="parent"></param>
     void Invisible(Transform parent)
     {
         if (resultPanelImage != null)
@@ -40,6 +48,9 @@ public class ResultSceneManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// パネルとテキストをフェードインする
+    /// </summary>
     void FadeIn()
     {
         // パネルの透明度をフェードイン
