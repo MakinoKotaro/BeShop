@@ -7,14 +7,14 @@ using UnityEngine;
 /// </summary>
 public class Mushroom : Enemy, IE_SpecialMove
 {
-    [SerializeField] private GameObject enemyManagerObj;
-    private EnemyManager _enemyManager;
+    [SerializeField] private GameObject enemyManagerObj; //敵の管理スクリプトのオブジェクト
+    private EnemyManager _enemyManager; //敵の管理スクリプト
 
 
-    [SerializeField] private float mushroomHealth;
-    [SerializeField] private int mushroomAttackPower;
+    [SerializeField] private float mushroomHealth; //キノコの体力
+    [SerializeField] private int mushroomAttackPower; //キノコの攻撃力
 
-    [SerializeField] private float mushroomMoveSpeed = 5f;
+    [SerializeField] private float mushroomMoveSpeed = 5f; //キノコの移動速度
 
     Animator animator;
     //=============各アニメーション=============
@@ -24,20 +24,20 @@ public class Mushroom : Enemy, IE_SpecialMove
     [SerializeField] string dead_animation;
     //==========================================
 
-    private GameObject player;
-    private bool playerIsHere = false;
+    private GameObject player; //プレイヤーのオブジェクト
+    private bool playerIsHere = false; //プレイヤーがいるかどうか
 
-    private float destroyDelay = 1.8f;
-    private float attackInterval = 5.0f;
-    private float popPoisonDelay = 0.5f;
-    private float distanceToPlayer = 3.0f;
+    private float destroyDelay = 1.8f; //破壊されるまでの時間
+    private float attackInterval = 5.0f; //攻撃間隔
+    private float popPoisonDelay = 0.5f; //毒のエフェクトを出すまでの時間
+    private float distanceToPlayer = 3.0f; //プレイヤーとの距離のしきい値
 
     //特殊行動用の変数たち
-    [SerializeField] private ParticleSystem poisonParticle;
-    PoisonController poisonController;
-    private bool canShotPoison = true;
+    [SerializeField] private ParticleSystem poisonParticle; //毒のエフェクト
+    PoisonController poisonController; //毒のコントローラー
+    private bool canShootPoison = true; //毒を出すことが可能かどうか
 
-    public bool CanShotPoison { get => canShotPoison; set => canShotPoison = value; }
+    public bool CanShootPoison { get => canShootPoison; set => canShootPoison = value; }
 
     void Start()
     {
@@ -52,11 +52,6 @@ public class Mushroom : Enemy, IE_SpecialMove
         ParticleSystem poisonParticle = GetComponent<ParticleSystem>();
 
         poisonController = GetComponent<PoisonController>();
-    }
-
-    void Update()
-    {
-
     }
 
     /// <summary>
@@ -136,7 +131,7 @@ public class Mushroom : Enemy, IE_SpecialMove
     /// </summary>
     public void EnemySpecialMove()
     {
-        canShotPoison = false;
+        canShootPoison = false;
         poisonParticle.Play();
         StartCoroutine(SpecialAttack());
     }
@@ -185,6 +180,6 @@ public class Mushroom : Enemy, IE_SpecialMove
     IEnumerator SpecialAttack()
     {
         yield return new WaitForSeconds(1.0f);
-        canShotPoison = true;
+        canShootPoison = true;
     }
 }

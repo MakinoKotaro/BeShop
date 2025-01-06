@@ -6,7 +6,7 @@ using UnityEngine.Rendering.PostProcessing;
 /// <summary>
 /// HPが1/3のときに表示するUI
 /// </summary>
-public class WarnigUiProcessing : MonoBehaviour
+public class WarningUIProcessing : MonoBehaviour
 {
     private float minValue = 0.3f;
     private float maxValue = 1.0f;
@@ -17,9 +17,9 @@ public class WarnigUiProcessing : MonoBehaviour
 
     private Vignette vignette;
 
-    private bool canShowWarningUi = false;
+    private bool canShowWarningUI = false;
 
-    public bool CanShowWarningUi { get => canShowWarningUi; set => canShowWarningUi = value; }
+    public bool CanShowWarningUI { get => canShowWarningUI; set => canShowWarningUI = value; }
 
     private void Start()
     {
@@ -33,7 +33,7 @@ public class WarnigUiProcessing : MonoBehaviour
     void Update()
     {
         //ビネットの処理
-        if (canShowWarningUi)
+        if (canShowWarningUI)
         {
             float pingPongValue = Mathf.PingPong(Time.time * speed, 1.0f); // Time.timeを使って時間とともに増加
             currentValue = Mathf.Lerp(minValue, maxValue, pingPongValue);

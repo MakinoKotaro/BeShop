@@ -17,6 +17,11 @@ public class ItemPreview : MonoBehaviour
     [SerializeField] TextMeshProUGUI[] nameTexts = new TextMeshProUGUI[8];
     [SerializeField] TextMeshProUGUI[] priceTexts = new TextMeshProUGUI[8];
     [SerializeField] GameObject[] selectedFrames = new GameObject[8];
+
+    // 配列を使うのはまぁまぁいいけど、リストの方が拡張性が高いコードを書けるからおすすめ。
+    // リストはサイズを柔軟に変更でき、例えば新しいアイテムを動的に追加したり削除したりする場合に便利です。
+    // また、Linqなどのメソッドを使うことで、データ操作が簡単になります。
+    
     void Start()
     {
         //それぞれの変数にアイテムのScriptableObjectの中身を代入

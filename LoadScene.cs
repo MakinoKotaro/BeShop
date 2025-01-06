@@ -10,7 +10,7 @@ using Cysharp.Threading.Tasks;
 /// </summary>
 public class LoadScene : MonoBehaviour
 {
-    private static string sceneName;
+    private static string sceneName; //遷移先のシーン名 なぜstaticをつける必要がある？
     private Scene nowScene;
     private static string currentScene;
     private static string beforeScene;
@@ -169,7 +169,7 @@ public class LoadScene : MonoBehaviour
     public void OnClickStage2Button()
     {
         SelectUIController selectUIController = GetComponent<SelectUIController>();
-        selectUIController.ShowFrame(1);
+        selectUIController.ShowFrame(1); //この1って何？コメント残して
         GetBeforeSceneName();
         sceneName = "Stage2";
     }
@@ -179,10 +179,12 @@ public class LoadScene : MonoBehaviour
     public void OnClickStage3Button()
     {
         SelectUIController selectUIController = GetComponent<SelectUIController>();
-        selectUIController.ShowFrame(2);
+        selectUIController.ShowFrame(2); //この２って何？コメント残して
         GetBeforeSceneName();
         sceneName = "Stage3";
     }
+
+    //ファティンコメント：今はこのあるので、
 
     /// <summary>
     /// ステージに入る演出シーンを再生する処理

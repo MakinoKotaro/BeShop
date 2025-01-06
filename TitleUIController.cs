@@ -7,25 +7,25 @@ using DG.Tweening;
 /// <summary>
 /// タイトル画面のUIスクリプト
 /// </summary>
-public class TitleUiController : MonoBehaviour
+public class TitleUIController : MonoBehaviour
 {
-    [SerializeField] private TextMeshProUGUI titleText;
-    [SerializeField] private Image titlePanelImage;
-    [SerializeField] private TextMeshProUGUI pressAnyKeyText;
+    [SerializeField] private TextMeshProUGUI titleText; // タイトルのテキスト
+    [SerializeField] private Image titlePanelImage; // タイトルのパネル
+    [SerializeField] private TextMeshProUGUI pressAnyKeyText; // 任意のキーを押してください
 
 
-    [SerializeField] private float fadeDuration;
-    [SerializeField] private float fadePressAnyKeyDuration;
-    [SerializeField] private float color_a;
+    [SerializeField] private float fadeDuration; // フェードの時間
+    [SerializeField] private float fadePressAnyKeyDuration; // 任意のキーを押してくださいの点滅の時間
+    [SerializeField] private float color_a; // 透明度
 
-    [SerializeField] private float popTitleTime;
-    [SerializeField] private float popOtherTime;
+    [SerializeField] private float popTitleTime; // タイトルを表示する時間
+    [SerializeField] private float popOtherTime; // その他を表示する時間
 
     void Start()
     {
         //pressAnyKeyText = GetComponent<TextMeshProUGUI>();
 
-        Invisible();
+        Invisible(); // タイトルのUIを非表示にする
 
         DOVirtual.DelayedCall(popTitleTime, () =>
         {
@@ -38,11 +38,7 @@ public class TitleUiController : MonoBehaviour
         });
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    //Updateを使用しないなら消す
 
     /// <summary>
     /// タイトルのUIを非表示にする

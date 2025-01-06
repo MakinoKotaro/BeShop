@@ -6,7 +6,7 @@ using UnityEngine;
 /// </summary>
 public class SelectUIController : MonoBehaviour
 {
-    [SerializeField] private GameObject[] selectedFrameImages = new GameObject[3];
+    [SerializeField] private GameObject[] selectedFrameImages = new GameObject[3]; //‘I‘ğ‚³‚ê‚½‚±‚Æ‚ğ¦‚·ƒtƒŒ[ƒ€‚Ì‰æ‘œ‚ğ“ü‚ê‚é‚à‚Ì
 
     private void Start()
     {

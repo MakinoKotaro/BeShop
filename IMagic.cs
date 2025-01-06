@@ -6,5 +6,9 @@ using UnityEngine;
 /// </summary>
 public interface IMagic 
 {
+    /// <summary>
+    /// –‚–@‚ð”­ŽË‚·‚é
+    /// </summary>
+    /// <param name="castPoint"></param>
     void Cast(Transform castPoint);
 }

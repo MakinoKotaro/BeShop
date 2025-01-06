@@ -9,21 +9,21 @@ using UnityEngine.UI;
 public class FollowCursor : MonoBehaviour
 {
 
-    [SerializeField] RectTransform panel;
-    [SerializeField] Canvas canvas;
+    [SerializeField] RectTransform panel; //説明パネル
+    [SerializeField] Canvas canvas; //キャンバス
 
-    private float distanceFromCamera = 10f;
+    private float distanceFromCamera = 10f; //カメラからの距離
 
-    [SerializeField] Vector3 panelOffset;
+    [SerializeField] Vector3 panelOffset; //パネルのオフセット
 
     private void Start()
     {
-        panel = GetComponent<RectTransform>();
+        panel = GetComponent<RectTransform>(); //パネルのRectTransformを取得
     }
-    // Update is called once per frame
+
     void Update()
     {
-        Vector3 mousePosition = Input.mousePosition;
+        Vector3 mousePosition = Input.mousePosition; 
 
         mousePosition.z = distanceFromCamera;
         

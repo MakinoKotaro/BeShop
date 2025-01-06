@@ -7,11 +7,14 @@ using UnityEngine.InputSystem.Processors;
 using Cinemachine;
 using System.Runtime.InteropServices;
 
+/// <summary>
+/// プレイヤーの操作を管理するスクリプト
+/// </summary>
 public class PlayerController : MonoBehaviour  
 {
     // このスクリプトで使う変数一覧
 
-    private PlayerInput playerInput;
+    private PlayerInput playerInput; // プレイヤーの入力を管理するための変数
     private CharacterController charaCon;       // キャラクターコンポーネント用の変数
     private Animator animCon;  //  アニメーションするための変数
 
@@ -23,9 +26,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     float rotateSpeed = 1200.0f;   
     
-    public bool ClearFlag = false;
-
-    //CharacterStatusScript status;
+    bool ClearFlag = false; //クリアフラグ
 
     //攻撃判定
     bool canAttack = true; //攻撃可能
@@ -33,7 +34,8 @@ public class PlayerController : MonoBehaviour
 
     bool use_cant_move_spell = false; //移動不可の魔法を使ったかどうか
 
-    public float attackIntervalTime = 1f, elapsedTime;
+    //攻撃間隔, 経過時間
+    float attackIntervalTime = 1f, elapsedTime;
 
     //地面にいるかどうか判定用
     private bool groundedPlayer = false;
@@ -58,20 +60,20 @@ public class PlayerController : MonoBehaviour
 
     float fallTriggerTime = 0.5f; //落下アニメーションを再生するまでの時間
 
-    private Vector3 playerVelocity;
+    private Vector3 playerVelocity; //プレイヤーの速度
 
-    int score = 0;
-    int nowScore = 0;
+    int score = 0; //スコア
+    int nowScore = 0; //現在のスコア
 
     //地面判定
     [SerializeField]
-    Transform groundCheck;
+    Transform groundCheck; //地面判定用のオブジェクト
 
     [SerializeField]
-    float groundCheckRadius;
+    float groundCheckRadius; //地面判定の半径
 
     [SerializeField]
-    LayerMask[] groundLayers;
+    LayerMask[] groundLayers; //地面のレイヤー
 
 
     //何キルすればクリアか
@@ -81,10 +83,10 @@ public class PlayerController : MonoBehaviour
     //キル数
     int kills = 0;
 
-    public UnityEvent onClearCallback = new UnityEvent();
+    public UnityEvent onClearCallback = new UnityEvent(); //クリア時のコールバック
 
     [SerializeField]
-    private GameObject OnScreenControls;
+    private GameObject OnScreenControls; //スマホ用のコントロール
 
     private PlayerAnimationScript playerAnimationScript; //プレイヤーのアニメーションを管理するスクリプトを取得
 
@@ -104,10 +106,10 @@ public class PlayerController : MonoBehaviour
 
     //==========================
 
-    private float dodgeInterval = 0.5f;
-    private float normalAttackInterval = 0.3f;
+    private float dodgeInterval = 0.5f; //回避のクールタイム
+    private float normalAttackInterval = 0.3f; //通常攻撃のクールタイム
 
-    //[SerializeField] private Camera camera;
+ 
     private void Awake()
     {
         playerInput = GetComponent<PlayerInput>(); //PlayerInputを取得
@@ -119,7 +121,11 @@ public class PlayerController : MonoBehaviour
 
     }
 
-    //スコア更新
+    /// <summary>
+    /// スコア更新
+    /// </summary>
+    /// <param name="s"></param>
+    /// <returns></returns>
     private int ScoreUpdate(int s) 
     {
 
@@ -184,16 +190,7 @@ public class PlayerController : MonoBehaviour
     // ■毎フレーム常に実行する処理
     void Update()
     {
-        //死んだときの処理
-        //if (status.life <= 0)
-        //{
-        //    animCon.SetBool("Run", false);
-        //    animCon.SetBool("Die", true);
 
-        //    GameObject.FindAnyObjectByType<GameOver>().GameOverShowPanel();
-
-        //    return;
-        //}
         if (ClearFlag == true)
         {
             animCon.SetBool("Run", false);
@@ -203,32 +200,6 @@ public class PlayerController : MonoBehaviour
 
             return;
         }
-        // ▼▼▼移動処理▼▼▼
-        //if (Input.GetAxis("Vertical") == 0 && Input.GetAxis("Horizontal") == 0)  //テンキーや3Dスティックの入力（GetAxis）がゼロの時の動作
-        /*
-         *Unityの新しいインプットシステム New Input System
-        
-        Input.GetKey -> Keyboard.current.escapeKey.isPressed
-        Input.GetKeyDown -> Keyboard.current.escapeKey.wasPressedThisFrame
-        Input.GetKeyUp -> Keyboard.current.escapeKey.wasReleasedThisFrame
-        
-        マウス関連
-        
-        左ボタンが押されている状態　→　Mouse.current.leftButton.isPressed
-        右ボタンが一回押された　→　Mouse.current.rightButton.wasPressedThisFrame
-        真ん中のボタンが解放された　→　Mouse.current.middleButton.wasReleasedThisFrame
-        今のマウスの位置をゲット　→　Mouse.current.position.ReadValue()
-        マウスのスクロールをゲット　→　Mouse.current.scroll.ReadValue().y
-
-        //ゲームコントローラ使用
-        if(Gamepad.current == null)
-        return;
-        Gamepad.current.rightStick.ReadValue()
-        Gamepad.current.buttonSouth.isPressed()
-
-        */
-
-        
 
         //***移動処理***//
         Vector2 moveInput = playerInput.actions["Move"].ReadValue<Vector2>();
@@ -325,7 +296,6 @@ public class PlayerController : MonoBehaviour
 
 
         // ▼▼▼アクション処理▼▼▼
-        //if (Input.GetMouseButtonDown(0) && canAttack && !isAttacking)
         //  ボタンを押したらアクションする
         if (playerInput.actions["Attack"].triggered && canAttack && !isAttacking)
         {
@@ -356,16 +326,14 @@ public class PlayerController : MonoBehaviour
             }
         }
 
-        //playerForward = transform.forward;
 
         playerForward = Camera.main.transform.forward;
         playerForward.y = 0;
         //Debug.Log(playerForward.ToString());
         Quaternion playerRotation = Quaternion.LookRotation(playerForward);
         gameObject.transform.rotation = playerRotation;
-
-        //adwa
     }
+
     //選択されたら地面チェック用のオブジェクトを描く
     private void OnDrawGizmosSelected()
     {
@@ -375,6 +343,9 @@ public class PlayerController : MonoBehaviour
         Gizmos.DrawWireSphere(groundCheck.position, groundCheckRadius);
     }
 
+/// <summary>
+/// キル数をカウントする
+/// </summary>
     public void CountKills()
     {
         kills++;
@@ -421,11 +392,11 @@ public class PlayerController : MonoBehaviour
             playerAnimationScript.PlayAreaMagicAnim(); //右クリックの攻撃アニメーションを再生
             use_cant_move_spell = true; //移動不可の攻撃をした
             isAttacking = true; //攻撃不可にする
-            yield return new WaitForSeconds(0.8f); //0.8秒待って
+            yield return new WaitForSeconds(0.8f); //0.8秒待って >> いいけど、変数化した方がいいかも
             HealMagic healMagic = magicManager.GetComponent<HealMagic>();
 
             healMagic.Cast(gameObject.transform);
-            yield return new WaitForSeconds(1.0f); //1.0秒待って
+            yield return new WaitForSeconds(1.0f); //1.0秒待って　>> いいけど、変数化した方がいいかも
 
             healMagic.DestroySpell();
         }
@@ -459,7 +430,7 @@ public class PlayerController : MonoBehaviour
         playerVelocity = playerForward * dodgeForce;
         playerAnimationScript.PlayDodgeAnim();
 
-        yield return new WaitForSeconds(dodgeInterval);　//0.5秒待って
+        yield return new WaitForSeconds(dodgeInterval); //0.5秒待って
 
         playerVelocity = playerForward / dodgeForce; //回避の移動をやめる
         canDodge = true; //回避可能にする
@@ -504,4 +475,7 @@ public class PlayerController : MonoBehaviour
             fallingTime = 0;
         }
     }
+
+    //ファティンコメント：必要ない部分は消しましょう。参考に残したいコードがある場合は違うファイルに移動してください。
+    //後、このままだとリモコンに対応していないゲームになるので、NewInputSystemのリモコンに対応するためのコードに変更してください。
 }

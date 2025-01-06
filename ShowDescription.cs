@@ -3,17 +3,18 @@ using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
-/// 
+/// カーソルがどのアイテムのUIに乗ったかを判定し、説明のUIを表示するスクリプト
 /// </summary>
 public class ShowDescription : MonoBehaviour
 {
-    [SerializeField] private ShopUiManager shopUiManager;
+    [SerializeField] private ShopUiManager shopUIManager;
     [SerializeField] private PurchaseManager purchaseManager;
 
     [SerializeField] private GameObject[] itemImages = new GameObject[8];
 
     [SerializeField] SO_ShopItem[] shopItems = new SO_ShopItem[8];
 
+//以下のコードの書き方はあまりよろしくない。どういうものにでも対応できる拡張性のあるアルゴリズムを考えよう
     //private void OnMouseEnter()
     //{
     //    Debug.Log("DWAD");

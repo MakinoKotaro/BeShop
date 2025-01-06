@@ -6,25 +6,31 @@ using UnityEngine;
 /// </summary>
 public abstract class Enemy : MonoBehaviour, IE_Attack, IE_Move, IE_TakeDamage, IE_Dead, IE_StopAttack
 {
-    protected float health;
-    protected float attackPower;
+    protected float health; //‘Ì—Í
+    protected float attackPower; //UŒ‚—Í
 
-    protected bool canMove;
+    protected bool canMove; //ˆÚ“®‚Å‚«‚é‚©‚Ç‚¤‚©
 
-    GameObject player;
+    GameObject player; //ƒvƒŒƒCƒ„[
 
-    public abstract void EnemyMove(bool foundPlayer, Vector3 playerPosition);
-    public abstract void EnemyAttack();
+    public abstract void EnemyMove(bool foundPlayer, Vector3 playerPosition); //“G‚ÌˆÚ“®
+    public abstract void EnemyAttack(); //“G‚ÌUŒ‚
 
-    public abstract void EnemyTakeDamage(float damageAmount);
+    public abstract void EnemyTakeDamage(float damageAmount); //“G‚ªƒ_ƒ[ƒW‚ğó‚¯‚é
 
-    public abstract void EnemyDead();
+    public abstract void EnemyDead(); //“G‚Ì€–S
 
-    public abstract void EnemyStopAttack();
+    public abstract void EnemyStopAttack(); //“G‚ÌUŒ‚‚ğ~‚ß‚é
 
     void Start()
     {
+
     }
+
+    /// <summary>
+    /// ƒvƒŒƒCƒ„[‚Éƒ_ƒ[ƒW‚ğ—^‚¦‚éˆ—
+    /// </summary>
+    /// <param name="damageAmount"></param>
     protected void DoneDamageToPlayer(float damageAmount)
     {
         

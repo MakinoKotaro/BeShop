@@ -2,19 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// 購入ボタンのコントローラー
+/// </summary>
 public class BuyButtonController : MonoBehaviour
 {
-    [SerializeField] GameObject dropdownObject;
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    [SerializeField] GameObject dropdownObject; // ドロップダウンオブジェクト
 
     public void OnClicked()
     {

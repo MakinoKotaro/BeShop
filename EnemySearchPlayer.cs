@@ -7,27 +7,26 @@ using UnityEngine;
 public class EnemySearchPlayer : MonoBehaviour
 {
     [SerializeField] private float radius; //捜索半径
-    [SerializeField] private Enemy enemy;
+    [SerializeField] private Enemy enemy; //敵のスクリプト
 
     private float loopTime = 0.01f; //ループのクールタイム
-    [SerializeField] private float attackLoopTime = 3f;
+    [SerializeField] private float attackLoopTime = 3f; //攻撃のクールタイム
 
-    private bool canAttack = true;
+    private bool canAttack = true; //攻撃可能かどうか
 
-    [SerializeField] private float attackDistance;
-    [SerializeField] private float rayDistance;
-    private string targetTag = "Player";
+    [SerializeField] private float attackDistance; //攻撃距離
+    [SerializeField] private float rayDistance; //レイの距離
+    private string targetTag = "Player"; //ターゲットのタグ
 
-    private bool playerInFront = false;
+    private bool playerInFront = false; //プレイヤーが正面にいるかどうか
 
 
-    Vector3 playerPosition = Vector3.zero;
+    Vector3 playerPosition = Vector3.zero; //プレイヤーの位置
 
     public bool PlayerInFront { get => playerInFront; set => playerInFront = value; }
 
     void Start()
     {
-
         StartCoroutine(SearchPlayer());
     }
 
@@ -49,7 +48,7 @@ public class EnemySearchPlayer : MonoBehaviour
     /// <returns></returns>
     IEnumerator SearchPlayer()
     {
-        while (true)
+        while (true) // 無限ループになりかねないので、ちゃんとフラグとか用意した方がいい
         {
             Collider[] hitColliders = Physics.OverlapSphere(transform.position, radius);
 
@@ -78,7 +77,10 @@ public class EnemySearchPlayer : MonoBehaviour
             // プレイヤーが範囲内にいるかどうかで処理を変える
             if (playerInRange)
             {
+                //Debug用のコードならばUnity_EDITORを使うべきです。
+                #if UNITY_EDITOR
                 //Debug.Log("Player is here：" + playerPosition);
+                #endif
 
                 if (enemy != null)
                 {
@@ -129,10 +131,6 @@ public class EnemySearchPlayer : MonoBehaviour
             {
                 Golem golem = gameObject.GetComponent<Golem>();
                 golem.Attack();
-            }
-            else
-            {
-
             }
         }
 

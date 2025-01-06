@@ -12,14 +12,14 @@ using UnityEngine.UI;
 public class PlayerParameter : MonoBehaviour
 {
     //======ステータス変数======
-    private static float playerHitPoint = 10;
-    private static float playerPower = 5;
-    private static float playerSpeed = 3;
-    private float maxHealth;
-    private bool takePoison = false;
+    private static float playerHitPoint = 10; // プレイヤーのHP
+    private static float playerPower = 5; // プレイヤーの攻撃力
+    private static float playerSpeed = 3; // プレイヤーの移動速度
+    private float maxHealth; // プレイヤーの最大HP
+    private bool takePoison = false; // 毒を受けたかどうか
     //==========================
 
-    private float warnigHitPoint;
+    private float warningHitPoint; // HPがこの値を下回ると警告UIを表示する
 
 
     //======ステータス プロパティ======
@@ -32,42 +32,43 @@ public class PlayerParameter : MonoBehaviour
 
     //=======================================
 
-    private bool nowTakingPoison = false;
+    private bool nowTakingPoison = false; //今毒を受けているかどうか
 
-    [SerializeField] private GameObject hpBarManagerObj;
-    GameObject warnigUiProcessingObj;
-    WarnigUiProcessing warnigUiProcessing;
-    private bool isShowingWarningUi = false;
+    [SerializeField] private GameObject hpBarManagerObj;  // HPバーのオブジェクト
+    GameObject warningUIProcessingObj; // 警告UIのオブジェクト
+    WarningUIProcessing warningUIProcessing; // 警告UIのスクリプト
+    private bool isShowingWarningUI = false; // 警告UIを表示しているかどうか
 
-    PlayerController playerController;
+    PlayerController playerController; // プレイヤーのコントローラー
     private void Start()
     {
         maxHealth = playerHitPoint;
-        warnigHitPoint = maxHealth / 3;
+        warningHitPoint = maxHealth / 3; //マジックナンバー発見！変数化してください。
     }
 
     private void Update()
     {
+        //これはデバッグ用かな？ならばUnity_EDITORを使うべきです。
+
         if (Keyboard.current.leftShiftKey.wasPressedThisFrame)
         {
             StopCoroutine(TakingPoison());
         }
 
         
-
-        if (playerHitPoint <= warnigHitPoint && isShowingWarningUi == false)
+        if (playerHitPoint <= warningHitPoint && isShowingWarningUI == false)
         {
-            warnigUiProcessing = GetComponent<WarnigUiProcessing>();
-            warnigUiProcessing.CanShowWarningUi = true;
+            warningUIProcessing = GetComponent<WarningUIProcessing>();
+            warningUIProcessing.canShowWarningUI = true;
 
-            isShowingWarningUi = true;
+            isShowingWarningUI = true;
         }
         else
         {
-            isShowingWarningUi = false;
+            isShowingWarningUI = false;
 
-            warnigUiProcessing = GetComponent<WarnigUiProcessing>();
-            warnigUiProcessing.CanShowWarningUi = false;
+            warningUIProcessing = GetComponent<WarningUIProcessing>();
+            warningUIProcessing.canShowWarningUI = false;
         }
     }
 
@@ -150,11 +151,13 @@ public class PlayerParameter : MonoBehaviour
     IEnumerator TakingPoison()
     {
         
-        for (int i = 0; i < 10; i++)
+        for (int i = 0; i < 10; i++) //マジックナンバー発見！変数化してください。
         {
-            PlayerTakeDamage(0.2f);
+            PlayerTakeDamage(0.2f);　//マジックナンバー発見！変数化してください。
+
             yield return new WaitForSeconds(1);  // 1秒ごとに待機してループ
         }
+
         takePoison = false;
         nowTakingPoison = false;
     }
@@ -217,6 +220,6 @@ public class PlayerParameter : MonoBehaviour
     /// <param name="itemName"></param>
     public void UnlockSpecialMove(string itemName)
     { 
-        
+        //処理追加予定　（特殊な効果を発動させる）
     }
 }

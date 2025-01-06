@@ -10,7 +10,7 @@ using UnityEngine.UI;
 /// </summary>
 public class ItemInteraction : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerDownHandler
 {
-    [SerializeField] private ShopUiManager shopUiManager; //ShopUiManager‚ğæ“¾
+    [SerializeField] private ShopUIManager shopUIManager; //ShopUiManager‚ğæ“¾
     [SerializeField] private PurchaseManager purchaseManager; //PurchaseManager‚ğæ“¾
     bool isShowing = false; //à–¾‚ÌUI‚ª•\¦’†‚©‚Ç‚¤‚©
     [SerializeField] SO_ShopItem shopItem; //SO_ShopItem‚ğæ“¾
@@ -30,7 +30,7 @@ public class ItemInteraction : MonoBehaviour, IPointerEnterHandler, IPointerExit
     {
         if (isShowing == false)
         {
-            shopUiManager.ShowDescUi(shopItem);
+            shopUIManager.ShowDescUI(shopItem);
             isShowing = true;
         }
     }
@@ -41,7 +41,7 @@ public class ItemInteraction : MonoBehaviour, IPointerEnterHandler, IPointerExit
     /// <param name="eventData"></param>
     public void OnPointerExit(PointerEventData eventData)
     {
-        shopUiManager.HideDescUi();
+        shopUIManager.HideDescUI();
         isShowing = false;
     }
 

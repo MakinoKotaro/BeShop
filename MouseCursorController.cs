@@ -10,8 +10,11 @@ using UnityEngine.InputSystem;
 public class MouseCursorController : MonoBehaviour
 {
     [SerializeField] private bool cursorLock = false; //ロックするかどうかのbool
-    LoadScene loadScene;
+    LoadScene loadScene; //シーン遷移のスクリプト
 
+/// <summary>
+/// カーソルロックのプロパティ
+/// </summary>
     public bool CursorLock
     {
         get { return cursorLock; }

@@ -2,10 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// ParticleManagerのスクリプト
+/// </summary>
 public class ParticleManager : MonoBehaviour
 {
-    [SerializeField] private ParticleSystem particle;
+    [SerializeField] private ParticleSystem particle; //パーティクルを取得
 
+//ファティンコメント；　このスクリプトは使われていないので、削除しても問題ないよね？
     void Update()
     {
         ////スペースキーを押すとparticleを再生

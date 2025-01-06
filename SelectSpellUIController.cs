@@ -6,13 +6,13 @@ using UnityEngine.InputSystem;
 /// <summary>
 /// 魔法を選択するUIを表示するスクリプト
 /// </summary>
-public class SelectSpellUiController : MonoBehaviour
+public class SelectSpellUIController : MonoBehaviour
 {
     [SerializeField] private RectTransform panel; // 親パネル
     [SerializeField] private float duration = 0.5f; // アニメーションの時間
     [SerializeField] private float targetScale = 0.3f; // 最終的なスケール
 
-    MouseCursorController mouseCursorController;
+    MouseCursorController mouseCursorController; // マウスカーソルのコントローラー
     void Start()
     {
         mouseCursorController = GameObject.FindWithTag("MainCamera").GetComponent<MouseCursorController>();
@@ -40,4 +40,7 @@ public class SelectSpellUiController : MonoBehaviour
             mouseCursorController.LockAndStayCenter();
         }
     }
+
+    //ファティンコメント：以上はPCのみで動くコードです。
+    //他プラットフォームにも使えるようにするためのコードもいずれは書く必要があります。
 }

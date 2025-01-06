@@ -9,28 +9,28 @@ using UnityEngine;
 /// </summary>
 public class Bear : Enemy
 {
-    [SerializeField] private GameObject enemyManagerObj;
-    private EnemyManager _enemyManager;
+    [SerializeField] private GameObject enemyManagerObj; // EnemyManagerのオブジェクト
+    private EnemyManager enemyManager; // EnemyManagerのスクリプト
 
 
-    [SerializeField] private float bearHealth;
-    [SerializeField] private int bearAttackPower;
+    [SerializeField] private float bearHealth; // クマの体力
+    [SerializeField] private int bearAttackPower; // クマの攻撃力
 
-    [SerializeField] private float bearMoveSpeed = 5f;
+    [SerializeField] private float bearMoveSpeed = 5f; // クマの移動速度
 
-    Animator animator;
+    Animator animator; // アニメーター
     //=============各アニメーション=============
-    [SerializeField] string idle_animation;
-    [SerializeField] string attack_animation;
-    [SerializeField] string walk_animation;
-    [SerializeField] string dead_animation;
+    [SerializeField] string idle_animation; // 待機アニメーション
+    [SerializeField] string attack_animation; // 攻撃アニメーション
+    [SerializeField] string walk_animation; // 移動アニメーション
+    [SerializeField] string dead_animation; // 死亡アニメーション
     //==========================================
 
-    private bool playerIsHere = false;
-    private GameObject player;
+    private bool playerIsHere = false; // プレイヤーがいるかどうか
+    private GameObject player; // プレイヤー
 
-    private float destroyDelay = 0.7f;
-    private float distanceToPlayer = 3.0f;
+    private float destroyDelay = 0.7f; // オブジェクトを削除するまでの時間
+    private float distanceToPlayer = 3.0f; // プレイヤーとの距離のしきい値
     void Start()
     {
         animator = GetComponent<Animator>();
@@ -40,12 +40,7 @@ public class Bear : Enemy
         canMove = true;
 
         player = GameObject.FindWithTag("Player");
-        _enemyManager = enemyManagerObj.GetComponent<EnemyManager>();
-    }
-
-    void Update()
-    {
-        
+        enemyManager = enemyManagerObj.GetComponent<EnemyManager>();
     }
 
     public override void EnemyMove(bool foundPlayer, Vector3 playerPosition)
@@ -148,12 +143,12 @@ public class Bear : Enemy
         sFXManager.SetSwingAttackSound();
         EnemySearchPlayer enemySearchPlayer = GetComponent<EnemySearchPlayer>();
 
-        yield return new WaitForSeconds(0.6f);
+        yield return new WaitForSeconds(0.6f); //マジックナンバー発見！変数化するか、コメントを追加してください。
         enemySearchPlayer.ChackPlayerFrame();
         if (enemySearchPlayer.PlayerInFront == true)
         {
             DoneDamageToPlayer(bearAttackPower);
         }
-        yield return new WaitForSeconds(4.4f);
+        yield return new WaitForSeconds(4.4f);　//マジックナンバー発見！変数化するか、コメントを追加してください。
     }
 }

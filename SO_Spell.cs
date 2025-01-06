@@ -82,4 +82,5 @@ public class SO_Spell : ScriptableObject
     {
         return this.spellPrefab;
     }
+    
 }
